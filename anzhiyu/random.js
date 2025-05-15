@@ -1,3 +1,3 @@
-var posts=["rainbow-bubbles/golang面试常见问题总结/","rainbow-bubbles/swoole面试常见问题/","rainbow-bubbles/PHP面试常见问题总结/","rainbow-bubbles/Ubuntu安装php/","rainbow-bubbles/搭建Hexo博客/"];function toRandomPost(){
+var posts=["rainbow-bubbles/MySQL常见问题及处理/","rainbow-bubbles/Redis缓存穿透-缓存击穿-缓存雪崩-布隆过滤器/","rainbow-bubbles/常用限流方案/","rainbow-bubbles/golang面试常见问题总结/","rainbow-bubbles/swoole面试常见问题/","rainbow-bubbles/PHP面试常见问题总结/","rainbow-bubbles/Ubuntu安装php/","rainbow-bubbles/搭建Hexo博客/"];function toRandomPost(){
     pjax.loadUrl('/'+posts[Math.floor(Math.random() * posts.length)]);
   };
