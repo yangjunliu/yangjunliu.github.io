@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>VSCode编码助手，RooCode使用</title>
+      <link href="/rainbow-bubbles/VibeCoding/vibe-coding-No-2/"/>
+      <url>/rainbow-bubbles/VibeCoding/vibe-coding-No-2/</url>
+      
+        <content type="html"><![CDATA[<h1 id="一、介绍"><a href="#一、介绍" class="headerlink" title="一、介绍"></a>一、介绍</h1><p>由于AI的快速发展使得各行各业都在寻找AI能够切实落地的方案，目前也可以说遍地开花也不为过。自媒体行业图文生成大大帮助了自媒体创作者的创作效率；教育行业具体问题的分析和讲解能力不逊色于一般水平的老师；医疗行业现在普遍是看报告的判断病情的时代AI觉得比人的判断效率更高更准；程序员这个行业哪些重复的增删查改工作交给AI来做真是太好了。这边文章就是从程序员的角度去了解和实践AI对这个行业帮助，把哪些重复的复制黏贴工作交给AI来做。</p><h1 id="二、VSCode-和-RooCode的使用"><a href="#二、VSCode-和-RooCode的使用" class="headerlink" title="二、VSCode 和 RooCode的使用"></a>二、VSCode 和 RooCode的使用</h1><p>程序员这个行业应该没有人不知道VSCode。RooCode是这次介绍的主角，VSCode的一个插件用来调用大模型和管理大模型接口。</p><h2 id="1-安装VSCode"><a href="#1-安装VSCode" class="headerlink" title="1. 安装VSCode"></a>1. 安装VSCode</h2><p>安装软件比较简单，下载然间然后双击打开一直下一步。如果想修改安装环境记得在安装过程中修改一下。<br>点击链接下载： <a href="https://code.visualstudio.com/Download">https://code.visualstudio.com/Download</a><br>选择对应自己的操作系统<br><img src="https://r2.721503.xyz/blog/1748689529671.png"></p><h2 id="2-下载Roo-Code插件"><a href="#2-下载Roo-Code插件" class="headerlink" title="2. 下载Roo Code插件"></a>2. 下载Roo Code插件</h2><p>安装完成后双击打开，打开界面左侧的扩展按钮，在搜索框中搜索<strong>Roo Code</strong>，找到对应扩展，点击<strong>Install</strong>按钮进行安装：<br><img src="https://r2.721503.xyz/blog/1748690098318.png"><br><img src="https://r2.721503.xyz/blog/1748690155361.png"><br>安装过程中可能需要输入确定，输入确定下一步就好了。</p><h2 id="3-配置Roo-Code"><a href="#3-配置Roo-Code" class="headerlink" title="3. 配置Roo Code"></a>3. 配置Roo Code</h2><ol><li><p>点击左侧小袋鼠的图标打开插件，点击设置的图标我们可以看到有很多需要配置的参数，左侧框住的部分是所有的设置选项，后面会讲。<br><img src="https://r2.721503.xyz/blog/1748690934656.png"></p></li><li><p>配置google Gemini大模型<br>看上图需要Gemini 大模型的API密钥，去们先去获取密钥然后填进去。</p></li></ol><ul><li>获取API密钥：<br><a href="https://aistudio.google.com/apikey">https://aistudio.google.com/apikey</a> 根据提示完成注册<br>点击创建密钥<br><img src="https://r2.721503.xyz/blog/1748691526207.png"><br>创建完成点击复制密钥<br><img src="https://r2.721503.xyz/blog/1748691567925.png"></li><li>使用roo code<br>把密钥复制进来，选择对应的模型版本。版本中包含exp的为免费版本。其他的可以先保持默认。<br><img src="https://r2.721503.xyz/blog/1748691778635.png"></li></ul><h2 id="4-试一下"><a href="#4-试一下" class="headerlink" title="4. 试一下"></a>4. 试一下</h2><p>让他先写一个小游戏试试</p><ul><li>在文件管理中打开或创建一个文件夹</li><li>然后再点击小袋鼠的图标，再提示框中输入这段文字。然后回车发送消息。<br><img src="https://r2.721503.xyz/blog/1748692469030.png"></li><li>开始执行，更具提示词写代码<br><img src="https://r2.721503.xyz/blog/1748693108542.png"></li><li>任务完成，运行代码<br><img src="https://r2.721503.xyz/blog/1748693236670.png"><br>小实验完成，看着还是挺不错的。</li></ul><h1 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h1><p>这知识一个小的demo，后面还可以更精细化的配置，让他一步一步按照我们写的TODO List生成代码，可玩性还是很高的。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> AIGC </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+            <tag> vibe coding </tag>
+            
+            <tag> RooCode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>介绍vibe coding</title>
       <link href="/rainbow-bubbles/VibeCoding/vibe-coding-No1/"/>
       <url>/rainbow-bubbles/VibeCoding/vibe-coding-No1/</url>
