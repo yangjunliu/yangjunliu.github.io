@@ -1,0 +1,547 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>golang面试常见问题总结 | Rainbow Bubbles of Blog</title><meta name="keywords" content="Golang"><meta name="author" content="Rainbow Bubbles"><meta name="copyright" content="Rainbow Bubbles"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="golang面试常见问题总结"><meta name="application-name" content="golang面试常见问题总结"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="golang面试常见问题总结"><meta property="og:url" content="http://example.com/rainbow-bubbles/Technology/golang%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/index.html"><meta property="og:site_name" content="Rainbow Bubbles of Blog"><meta property="og:description" content="Go语言特点Go语言相比C++&amp;#x2F;Java等语言是优雅且简洁的，它既保留了C++的高性能，又可以像Java，Python优雅的调用三方库和管理项目，同时还有接口，自动垃圾回收和goroutine等让人拍案叫绝的设计。有许多基于Go的优秀项目。Docker，Kubernetes，etcd，de"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://img.090227.xyz/file/ae62475a131f3734a201c.png"><meta property="article:author" content="Rainbow Bubbles"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://img.090227.xyz/file/ae62475a131f3734a201c.png"><meta name="description" content="Go语言特点Go语言相比C++&amp;#x2F;Java等语言是优雅且简洁的，它既保留了C++的高性能，又可以像Java，Python优雅的调用三方库和管理项目，同时还有接口，自动垃圾回收和goroutine等让人拍案叫绝的设计。有许多基于Go的优秀项目。Docker，Kubernetes，etcd，de"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="http://example.com/rainbow-bubbles/Technology/golang%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//static.cloudflareinsights.com"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-GQR5T6ZRM7"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-GQR5T6ZRM7');
+</script><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;75acb7719d4441c8be145cf1239a6c9b&quot;}"></script><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: undefined,
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  music_page_default: "nav_music",
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: undefined,
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: Rainbow Bubbles","link":"链接: ","source":"来源: Rainbow Bubbles of Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: 'Rainbow Bubbles of Blog',
+  title: 'golang面试常见问题总结',
+  postAI: '',
+  pageFillDescription: 'Go语言特点, 切片与数组的区别, 切片使用方法, 初始化, 获取长度和容量, 添加元素, 删除元素, 遍历, 切片的扩容机制, Go1.18版前, 源码片段, Go 1.18版本后, 源码片段, 锁机制, 互斥锁 (Mutex), Mutex的两种模式, 读写锁（RWMutex）, 使用方法, 底层结构, 实现原理, 易错场景, 死锁, 概念, 产生死锁的四个必要条件, 如何解决死锁？（只需要打破必要条件其中一个即可避免死锁）, sync.Cond, 基本方法, Channel, 应用场景, 基本用法, 返回容量, 返回channel中缓存的还未被取走的元素数量, 关闭channel, 遍历channel, 底层结构, 实现原理, 易错点语言特点语言相比等语言是优雅且简洁的它既保留了的高性能又可以像优雅的调用三方库和管理项目同时还有接口自动垃圾回收和等让人拍案叫绝的设计有许多基于的优秀项目等等无疑是云时代的最好语言题外话到此为止在面试中我们需要深入了解语言特性并适当辅以源码阅读源码非常人性化注释非常详细基本上只要你学过就能看懂来提升能力常考的点包括切片通道异常处理模型字符串高效拼接指针反射接口和相关工具链切片与数组的区别在语言中数组和切片是两种不同的数据类型它们有以下区别长度固定动态长度数组是长度固定的在声明时需要指定长度并且无法改变长度切片是动态长度的可以根据需要自动调整长度无需在声明时指定长度值类型引用类型数组是值类型赋值或传递数组时会进行值的复制切片是引用类型赋值或传递切片时会共享底层数据修改其中一个切片会影响其他引用该底层数组的切片内存分配数组在声明时会直接分配连续的内存空间长度固定切片是基于数组的动态长度的视图底层使用数组来存储数据但可以根据需要动态调整切片的长度灵活性数组的长度固定无法动态增加或缩小需要重新创建一个新的数组切片可以通过追加元素或切割操作来动态增加或缩小长度使用场景数组适用于固定长度的数据集合如存储一组固定大小的元素切片适用于动态长度的数据集合如存储可变数量的元素并且经常需要进行动态调整总的来说数组适用于长度固定的数据集合而切片适用于动态长度的数据集合切片提供了更大的灵活性和方便的操作是在语言中更常用的数据结构切片使用方法初始化函数初始化从数组中截取获取长度和容量添加元素删除元素遍历切片的扩容机制版前新申请的容量如果大于当前容量的两倍会将新申请的容量直接作为新的容量如果新申请的容量小于当前容量的两倍会有一个阈值即当前切片容量小于时切片会将当前容量的倍作为新申请的容量如果大于等于会将当前的容量的倍作为新申请的容量源码片段版本后新申请的容量如果大于当前容量的两倍会将新申请的容量直接作为新的容量如果新申请的容量小于当前容量的两倍会有一个阈值即当前切片容量小于时切片会将当前容量的倍作为新申请的容量如果大于等于会将当前的容量的倍作为新申请的容量扩容的时候更加平滑不会出现从到的突变源码片段锁机制互斥锁是的互斥锁作用是在并发程序中对共享资源的保护避免出现数据竞争问题使用方法实现了接口也就是互斥锁提供两个方法和使用实例互斥锁保护计数器计数器的值启动个累加万次的两种模式可能处于两种操作模式下正常模式在正常模式下所有的会按照先进先出的顺序进行等待被唤醒的不会直接持有锁会和新进来的锁进行竞争新请求进来的锁会更容易抢占到锁因为正在上运行因此刚唤醒的可能会竞争失败回到队列头部如果队列的超过毫秒的等待时间则会转换到饥饿模式饥饿模式在饥饿模式下锁会直接交给队列的第一个新进来的不会抢占锁也不会进入自旋状态直接进入队列尾部如果当前已经是队列的最后一个或者当前等待时间小于毫秒则会转换到正常模式正常模式下性能更好但饥饿模式解决取锁公平问题性能较差底层结构是一个复合型的字段一个字段包含多个意义阻塞等待的数量饥饿标记唤醒标记持有锁的标记易错场景没有成对出现加锁后必须有解锁操作如果之后没有会出现死锁的情况或者是因为一个未的而导致复制已经使用过的因为复制了已经使用了的导致锁无法使用程序处于死锁的状态重入锁是不可重入锁如果一个线程成功获取到这个锁之后如果其它线程再请求这个锁就会处于阻塞等待的状态死锁两个或两个以上的争夺共享资源互相等待对方的锁释放读写锁是一个互斥锁在某一时刻只能由任意数量的持有或者是只被单个的持有适用于读多写少的场景使用方法写操作时调用的方法读操作时调用的方法这个方法的作用是为读操作返回一个接口的对象它的方法会调用的方法它的方法会调用的方法使用示例个计数器读操作一个计数器写操作一个线程安全的计数器使用写锁保护使用读锁保护底层结构互斥锁解决多个的竞争信号量信号量的数量以及是否有竞争锁等待完成的的数量实现原理一个获得了内部的互斥锁就会反转字段把它从原来的正整数修改为负数让这个字段保持两个含义既保存了的数量又表示当前有也就是说当为负数的时候表示当前持有写锁中会进行阻塞当一个释放锁的时候它会再次反转字段可以肯定的是因为当前锁由持有所以字段是反转过的并且减去了这个常数变成了负数所以这里的反转方法就是给它增加这个常数值易错场景复制已经使用的读写锁会把它的状态也给复制过来原来的锁在释放的时候并不会修改你复制出来的这个读写锁这就会导致复制出来的读写锁的状态不对可能永远无法释放锁重入导致死锁因为读写锁内部基于互斥锁实现对的并发访问而互斥锁本身是有重入问题的所以重入调用的时候就会出现死锁的现象在的读操作时调用的写操作调用方法那么这个和就会形成互相依赖的死锁状态当一个请求锁的时候如果已经有一些活跃的它会等待这些活跃的完成才有可能获取到锁但是如果之后活跃的再依赖新的的话这些新的就会等待释放锁之后才能继续执行这就形成了一个环形依赖依赖活跃的活跃的依赖新来的新来的依赖释放未加锁的和互斥锁一样和的调用总是成对出现的和的调用也必须成对出现和多余的调用会导致锁没有被释放可能会出现死锁而和多余的调用会导致死锁概念两个或两个以上的进程或线程在执行过程中因争夺共享资源而处于一种互相等待的状态如果没有外部干涉它们都将无法推进下去此时我们称系统处于死锁状态或系统产生了死锁产生死锁的四个必要条件互斥资源只能被一个持有其他必须等待直到资源被释放持有和等待持有一个资源并且还在请求其它持有的资源不可剥夺资源只能由持有它的来释放环路等待多个等待等待的资源等待的资源等待的资源形成环路等待的死结如何解决死锁只需要打破必要条件其中一个即可避免死锁设置超时时间避免使用多个锁按照规定顺序申请锁死锁检测通常应用于等待某个条件的一组等条件变为的时候其中一个或者所有的都会被唤醒执行基本方法唤醒一个等待此的唤醒所有等待此的放入的等待队列中并阻塞直到被或者的方法从等待队列中移除并唤醒使用该方法是需要搭配满足条件使用示例加锁更改等待条件运动员已准备就绪广播唤醒所有的等待者裁判员被唤醒一次所有的运动员是否就绪所有运动员都准备就绪比赛开始用于之间的通信语言中并发模型不要通过共享内存实现通信而是通过通信实现共享内存就是由和实现的应用场景数据交流信号通知任务编排锁基本用法初始化有缓冲区无缓冲区发送数据接受数据把接收的一条数据赋值给变量把接收的一个的数据作为参数传给函数丢弃接收的一条数据返回容量返回中缓存的还未被取走的元素数量关闭遍历第一种第二种底层结构已经接收但还未被取走的元素个数内置函数获取到循环队列的大小暂时认为是容量的值和声明时到元素类型和大小固定指向缓冲区的指针无缓冲通道中的值为处理发送进来数据的指针在中的位置接收到数据指针会加上移向下一个位置处理接收请求发送出去的指针在中的位置如果没有数据可读而阻塞会加入到队列中向一个满了的发送数据而阻塞会加入到队列中实现原理向写数据的流程有缓冲区优先查看是否为空如果不为空优先唤醒的中并写入数据如果队列为空则写入缓冲区如果缓冲区已满则写入队列无缓冲区直接写入队列向读数据的流程有缓冲区优先查看缓冲区如果缓冲区有数据并且未满直接从缓冲区取出数据如果缓冲区已满并且队列不为空优先读取缓冲区头部的数据并将队列的的数据写入缓冲区尾部无缓冲区将当前加入队列等到写的唤醒易错点未初始化写入或者读取都会阻塞往的写入数据会发生未初始化会发生已经过的会发生',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-05-18 20:50:28',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://r2.721503.xyz/blog/1747565269548.png"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" accesskey="h"><div class="title">Rainbow Bubbles of Blog</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/?id=60198&amp;server=netease"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 1.05rem;">AI<sup>2</sup></a><a href="/tags/BTC/" style="font-size: 1.05rem;">BTC<sup>1</sup></a><a href="/tags/Cache/" style="font-size: 1.05rem;">Cache<sup>1</sup></a><a href="/tags/ETH/" style="font-size: 1.05rem;">ETH<sup>1</sup></a><a href="/tags/Golang/" style="font-size: 1.05rem;">Golang<sup>1</sup></a><a href="/tags/Hexo/" style="font-size: 1.05rem;">Hexo<sup>1</sup></a><a href="/tags/MySQL/" style="font-size: 1.05rem;">MySQL<sup>1</sup></a><a href="/tags/PHP/" style="font-size: 1.05rem;">PHP<sup>1</sup></a><a href="/tags/Redis/" style="font-size: 1.05rem;">Redis<sup>1</sup></a><a href="/tags/RooCode/" style="font-size: 1.05rem;">RooCode<sup>1</sup></a><a href="/tags/Ubuntu/" style="font-size: 1.05rem;">Ubuntu<sup>1</sup></a><a href="/tags/audio/" style="font-size: 1.05rem;">audio<sup>1</sup></a><a href="/tags/download/" style="font-size: 1.05rem;">download<sup>1</sup></a><a href="/tags/free-tools/" style="font-size: 1.05rem;">free tools<sup>1</sup></a><a href="/tags/php/" style="font-size: 1.05rem;">php<sup>1</sup></a><a href="/tags/prefix/" style="font-size: 1.05rem;">prefix<sup>1</sup></a><a href="/tags/roots/" style="font-size: 1.05rem;">roots<sup>3</sup></a><a href="/tags/suffix/" style="font-size: 1.05rem;">suffix<sup>1</sup></a><a href="/tags/swoole/" style="font-size: 1.05rem;">swoole<sup>1</sup></a><a href="/tags/tools/" style="font-size: 1.05rem;">tools<sup>1</sup></a><a href="/tags/vibe-coding/" style="font-size: 1.05rem;">vibe coding<sup>2</sup></a><a href="/tags/video/" style="font-size: 1.05rem;">video<sup>1</sup></a><a href="/tags/%E5%90%88%E7%BA%A6/" style="font-size: 1.05rem;">合约<sup>1</sup></a><a href="/tags/%E6%B5%81%E9%87%8F%E9%99%90%E6%B5%81/" style="font-size: 1.05rem;">流量限流<sup>1</sup></a><a href="/tags/%E7%83%AD%E7%82%B9/" style="font-size: 1.05rem;">热点<sup>2</sup></a><a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 1.05rem;">缓存<sup>1</sup></a><a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" style="font-size: 1.05rem;">高并发<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/07/"><span class="card-archive-list-date">七月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/06/"><span class="card-archive-list-date">六月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/05/"><span class="card-archive-list-date">五月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">15</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/" itemprop="url">计算机技术</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/Golang/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>Golang</span></a></span></div></div><h1 class="post-title" itemprop="name headline">golang面试常见问题总结</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2025-05-15T08:55:31.000Z" title="发表于 2025-05-15 16:55:31">2025-05-15</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2025-05-18T12:50:28.377Z" title="更新于 2025-05-18 20:50:28">2025-05-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">3.9k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="golang面试常见问题总结"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为上海"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>上海</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://img.090227.xyz/file/ae62475a131f3734a201c.png"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="http://example.com/rainbow-bubbles/Technology/golang%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/"><header><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/" itemprop="url">计算机技术</a><a href="/tags/Golang/" tabindex="-1" itemprop="url">Golang</a><h1 id="CrawlerTitle" itemprop="name headline">golang面试常见问题总结</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">Rainbow Bubbles</span><time itemprop="dateCreated datePublished" datetime="2025-05-15T08:55:31.000Z" title="发表于 2025-05-15 16:55:31">2025-05-15</time><time itemprop="dateCreated datePublished" datetime="2025-05-18T12:50:28.377Z" title="更新于 2025-05-18 20:50:28">2025-05-18</time></header><h1 id="Go语言特点"><a href="#Go语言特点" class="headerlink" title="Go语言特点"></a>Go语言特点</h1><p>Go语言相比C++&#x2F;Java等语言是优雅且简洁的，它既保留了C++的高性能，又可以像Java，Python优雅的调用三方库和管理项目，同时还有接口，自动垃圾回收和goroutine等让人拍案叫绝的设计。<br>有许多基于Go的优秀项目。Docker，Kubernetes，etcd，deis，flynn，lime，revel等等。Go无疑是云时代的最好语言！<br>题外话到此为止，在面试中，我们需要深入了解Go语言特性，并适当辅以源码阅读（Go源码非常人性化，注释非常详细，基本上只要你学过Go就能看懂）来提升能力。常考的点包括：切片，通道，异常处理，Goroutine，GMP模型，字符串高效拼接，指针，反射，接口，sync，go test和相关工具链。）</p>
+<h1 id="切片与数组的区别"><a href="#切片与数组的区别" class="headerlink" title="切片与数组的区别"></a>切片与数组的区别</h1><p>在Go语言中，数组（Array）和切片（Slice）是两种不同的数据类型，它们有以下区别： </p>
+<ol>
+<li>长度固定 vs 动态长度：</li>
+</ol>
+<ul>
+<li>数组是长度固定的，在声明时需要指定长度，并且无法改变长度。</li>
+<li>切片是动态长度的，可以根据需要自动调整长度，无需在声明时指定长度。</li>
+</ul>
+<ol start="2">
+<li>值类型 vs 引用类型：</li>
+</ol>
+<ul>
+<li>数组是值类型，赋值或传递数组时会进行值的复制。</li>
+<li>切片是引用类型，赋值或传递切片时会共享底层数据，修改其中一个切片会影响其他引用该底层数组的切片。</li>
+</ul>
+<ol start="3">
+<li>内存分配：</li>
+</ol>
+<ul>
+<li>数组在声明时会直接分配连续的内存空间，长度固定。</li>
+<li>切片是基于数组的动态长度的视图，底层使用数组来存储数据，但可以根据需要动态调整切片的长度。</li>
+</ul>
+<ol start="4">
+<li>灵活性：</li>
+</ol>
+<ul>
+<li>数组的长度固定，无法动态增加或缩小，需要重新创建一个新的数组。</li>
+<li>切片可以通过追加元素或切割操作来动态增加或缩小长度。</li>
+</ul>
+<ol start="5">
+<li>使用场景：</li>
+</ol>
+<ul>
+<li>数组适用于固定长度的数据集合，如存储一组固定大小的元素。</li>
+<li>切片适用于动态长度的数据集合，如存储可变数量的元素，并且经常需要进行动态调整。</li>
+</ul>
+<p>总的来说，数组适用于长度固定的数据集合，而切片适用于动态长度的数据集合。切片提供了更大的灵活性和方便的操作，是在Go语言中更常用的数据结构。</p>
+<h1 id="切片使用方法"><a href="#切片使用方法" class="headerlink" title="切片使用方法"></a>切片使用方法</h1><h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><ol>
+<li>make 函数初始化</li>
+</ol>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>从数组中截取</li>
+</ol>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr := [<span class="number">4</span>]<span class="type">int</span>&#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">s := arr[<span class="number">2</span>:<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="获取长度和容量"><a href="#获取长度和容量" class="headerlink" title="获取长度和容量"></a>获取长度和容量</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">len</span>(s)</span><br><span class="line"><span class="built_in">cap</span>(s)</span><br></pre></td></tr></table></figure>
+<h2 id="添加元素"><a href="#添加元素" class="headerlink" title="添加元素"></a>添加元素</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr := [<span class="number">4</span>]<span class="type">int</span>&#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">s := arr[<span class="number">2</span>:<span class="number">3</span>]</span><br><span class="line">s = <span class="built_in">append</span>(s, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="built_in">append</span>(s[:<span class="number">2</span>], s[<span class="number">3</span>:]...)</span><br></pre></td></tr></table></figure>
+<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> k, v := <span class="keyword">range</span> s &#123;</span><br><span class="line">    fmt.Printf(<span class="string">&quot;%d:%d\n&quot;</span>, k, v)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="切片的扩容机制"><a href="#切片的扩容机制" class="headerlink" title="切片的扩容机制"></a>切片的扩容机制</h1><h2 id="Go1-18版前"><a href="#Go1-18版前" class="headerlink" title="Go1.18版前"></a>Go1.18版前</h2><p>新申请的容量如果大于当前容量的两倍，会将新申请的容量直接作为新的容量，如果新申请的容量小于当前容量的两倍，会有一个阈值，即当前切片容量小于1024时，切片会将当前容量的2倍作为新申请的容量，如果大于等于1024，会将当前的容量的1.25倍作为新申请的容量。</p>
+<h3 id="源码片段"><a href="#源码片段" class="headerlink" title="源码片段"></a>源码片段</h3><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">newcap := old.<span class="built_in">cap</span></span><br><span class="line">doublecap := newcap + newcap</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">cap</span> &gt; doublecap &#123;</span><br><span class="line">	newcap = <span class="built_in">cap</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> old.<span class="built_in">cap</span> &lt; <span class="number">1024</span> &#123;</span><br><span class="line">		newcap = doublecap</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="comment">// Check 0 &lt; newcap to detect overflow</span></span><br><span class="line">		<span class="comment">// and prevent an infinite loop.</span></span><br><span class="line">		<span class="keyword">for</span> <span class="number">0</span> &lt; newcap &amp;&amp; newcap &lt; <span class="built_in">cap</span> &#123;</span><br><span class="line">			newcap += newcap / <span class="number">4</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// Set newcap to the requested cap when</span></span><br><span class="line">		<span class="comment">// the newcap calculation overflowed.</span></span><br><span class="line">		<span class="keyword">if</span> newcap &lt;= <span class="number">0</span> &#123;</span><br><span class="line">			newcap = <span class="built_in">cap</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Go-1-18版本后"><a href="#Go-1-18版本后" class="headerlink" title="Go 1.18版本后"></a>Go 1.18版本后</h2><p>新申请的容量如果大于当前容量的两倍，会将新申请的容量直接作为新的容量，如果新申请的容量小于当前容量的两倍，会有一个阈值，即当前切片容量小于256时，切片会将当前容量的2倍作为新申请的容量，如果大于等于256，会将当前的容量的1.25倍+192作为新申请的容量，扩容的时候更加平滑，不会出现从2到1.25的突变。</p>
+<h3 id="源码片段-1"><a href="#源码片段-1" class="headerlink" title="源码片段"></a>源码片段</h3><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">newcap := old.<span class="built_in">cap</span></span><br><span class="line">	doublecap := newcap + newcap</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">cap</span> &gt; doublecap &#123;</span><br><span class="line">		newcap = <span class="built_in">cap</span></span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">const</span> threshold = <span class="number">256</span></span><br><span class="line">		<span class="keyword">if</span> old.<span class="built_in">cap</span> &lt; threshold &#123;</span><br><span class="line">			newcap = doublecap</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="comment">// Check 0 &lt; newcap to detect overflow</span></span><br><span class="line">			<span class="comment">// and prevent an infinite loop.</span></span><br><span class="line">			<span class="keyword">for</span> <span class="number">0</span> &lt; newcap &amp;&amp; newcap &lt; <span class="built_in">cap</span> &#123;</span><br><span class="line">				<span class="comment">// Transition from growing 2x for small slices</span></span><br><span class="line">				<span class="comment">// to growing 1.25x for large slices. This formula</span></span><br><span class="line">				<span class="comment">// gives a smooth-ish transition between the two.</span></span><br><span class="line">				newcap += (newcap + <span class="number">3</span>*threshold) / <span class="number">4</span></span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">// Set newcap to the requested cap when</span></span><br><span class="line">			<span class="comment">// the newcap calculation overflowed.</span></span><br><span class="line">			<span class="keyword">if</span> newcap &lt;= <span class="number">0</span> &#123;</span><br><span class="line">				newcap = <span class="built_in">cap</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="锁机制"><a href="#锁机制" class="headerlink" title="锁机制"></a>锁机制</h1><h2 id="互斥锁-Mutex"><a href="#互斥锁-Mutex" class="headerlink" title="互斥锁 (Mutex)"></a>互斥锁 (Mutex)</h2><p>Mutex是Golang的互斥锁，作用是在并发程序中对共享资源的保护，避免出现数据竞争问题。<br>使用方法：Mutex实现了Locker接口</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Locker <span class="keyword">interface</span> &#123;</span><br><span class="line">    Lock()</span><br><span class="line">    Unlock()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也就是互斥锁 Mutex 提供两个方法 Lock 和 Unlock</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span><span class="params">(m *Mutex)</span></span>Lock()</span><br><span class="line"><span class="function"><span class="keyword">func</span><span class="params">(m *Mutex)</span></span>Unlock()</span><br></pre></td></tr></table></figure>
+<p>使用实例</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line">    <span class="keyword">import</span> (</span><br><span class="line">        <span class="string">&quot;fmt&quot;</span></span><br><span class="line">        <span class="string">&quot;sync&quot;</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="comment">// 互斥锁保护计数器</span></span><br><span class="line">        <span class="keyword">var</span> mu sync.Mutex</span><br><span class="line">        <span class="comment">// 计数器的值</span></span><br><span class="line">        <span class="keyword">var</span> count = <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">        wg.Add(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 启动10个gourontine</span></span><br><span class="line">        <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">            <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">                <span class="keyword">defer</span> wg.Done()</span><br><span class="line">                <span class="comment">// 累加10万次</span></span><br><span class="line">                <span class="keyword">for</span> j := <span class="number">0</span>; j &lt; <span class="number">100000</span>; j++ &#123;</span><br><span class="line">                    mu.Lock()</span><br><span class="line">                    count++</span><br><span class="line">                    mu.Unlock()</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;()</span><br><span class="line">        &#125;</span><br><span class="line">        wg.Wait()</span><br><span class="line">        fmt.Println(count)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Mutex的两种模式"><a href="#Mutex的两种模式" class="headerlink" title="Mutex的两种模式"></a>Mutex的两种模式</h3><p>Mutex 可能处于两种操作模式下：</p>
+<ol>
+<li>正常模式<br>在正常模式下，所有的goroutine会按照先进先出的顺序进行等待，被唤醒的goroutine不会直接持有锁，会和新进来的锁进行竞争，新请求进来的锁会更容易抢占到锁，因为正在CPU上运行，因此刚唤醒的goroutine可能会竞争失败，回到队列头部；如果队列的goroutine超过1毫秒的等待时间，则会转换到饥饿模式。</li>
+<li>饥饿模式<br>在饥饿模式下，锁会直接交给队列的第一个goroutine，新进来的goroutine不会抢占锁也不会进入自旋状态，直接进入队列尾部；如果当前goroutine已经是队列的最后一个或者当前goroutine等待时间小于1毫秒，则会转换到正常模式</li>
+</ol>
+<p>正常模式下，性能更好，但饥饿模式解决取锁公平问题，性能较差。<br>3. 底层结构</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Mutex <span class="keyword">struct</span> &#123;</span><br><span class="line">     state <span class="type">int32</span></span><br><span class="line">     sema  <span class="type">uint32</span></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">const</span> (</span><br><span class="line">     mutexLocked = <span class="number">1</span> &lt;&lt; <span class="literal">iota</span> <span class="comment">// mutex is locked</span></span><br><span class="line">     mutexWoken</span><br><span class="line">     mutexWaiterShift = <span class="literal">iota</span></span><br><span class="line"> )</span><br></pre></td></tr></table></figure>
+<p>state 是一个复合型的字段，一个字段包含多个意义:</p>
+<p>mutexWaiters 阻塞等待的waiter数量</p>
+<p>mutexStarving 饥饿标记</p>
+<p>mutexWoken 唤醒标记</p>
+<p>mutexLocked 持有锁的标记</p>
+<ol start="4">
+<li>易错场景</li>
+</ol>
+<ul>
+<li>Lock&#x2F;Unlock没有成对出现（加锁后必须有解锁操作），如果Lock之后，没有Unlock会出现死锁的情况，或者是因为 Unlock 一个未Lock的 Mutex 而导致 panic</li>
+<li>复制已经使用过的Mutex，因为复制了已经使用了的Mutex，导致锁无法使用，程序处于死锁的状态</li>
+<li>重入锁，Mutex是不可重入锁，如果一个线程成功获取到这个锁。之后，如果其它线程再请求这个锁，就会处于阻塞等待的状态</li>
+<li>死锁，两个或两个以上的goroutine争夺共享资源，互相等待对方的锁释放</li>
+</ul>
+<h2 id="读写锁（RWMutex）"><a href="#读写锁（RWMutex）" class="headerlink" title="读写锁（RWMutex）"></a>读写锁（RWMutex）</h2><p>RWMutex 是一个 reader&#x2F;writer 互斥锁。RWMutex 在某一时刻只能由任意数量的 reader goroutine 持有，或者是只被单个的 writer goroutine 持有，适用于读多写少的场景。</p>
+<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><ul>
+<li>Lock&#x2F;Unlock：写操作时调用的方法</li>
+<li>RLock&#x2F;RUnlock：读操作时调用的方法</li>
+<li>RLocker：这个方法的作用是为读操作返回一个 Locker 接口的对象。它的 Lock 方法会调用 RWMutex 的 RLock 方法，它的 Unlock 方法会调用 RWMutex 的 RUnlock 方法。</li>
+</ul>
+<p>使用示例：</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> counter Counter</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123; <span class="comment">// 10个reader</span></span><br><span class="line">        <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">            <span class="keyword">for</span> &#123;</span><br><span class="line">                counter.Count() <span class="comment">// 计数器读操作</span></span><br><span class="line">                time.Sleep(time.Millisecond)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> &#123; <span class="comment">// 一个writer</span></span><br><span class="line">        counter.Incr() <span class="comment">// 计数器写操作</span></span><br><span class="line">        time.Sleep(time.Second)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 一个线程安全的计数器</span></span><br><span class="line"><span class="keyword">type</span> Counter <span class="keyword">struct</span> &#123;</span><br><span class="line">    mu    sync.RWMutex</span><br><span class="line">    count <span class="type">uint64</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用写锁保护</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *Counter)</span></span> Incr() &#123;</span><br><span class="line">    c.mu.Lock()</span><br><span class="line">    c.count++</span><br><span class="line">    c.mu.Unlock()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用读锁保护</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *Counter)</span></span> Count() <span class="type">uint64</span> &#123;</span><br><span class="line">    c.mu.RLock()</span><br><span class="line">    <span class="keyword">defer</span> c.mu.RUnlock()</span><br><span class="line">    <span class="keyword">return</span> c.count</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="底层结构"><a href="#底层结构" class="headerlink" title="底层结构"></a>底层结构</h3><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> RWMutex <span class="keyword">struct</span> &#123;</span><br><span class="line">  w           Mutex   <span class="comment">// 互斥锁解决多个writer的竞争</span></span><br><span class="line">  writerSem   <span class="type">uint32</span>  <span class="comment">// writer信号量</span></span><br><span class="line">  readerSem   <span class="type">uint32</span>  <span class="comment">// reader信号量</span></span><br><span class="line">  readerCount <span class="type">int32</span>   <span class="comment">// reader的数量（以及是否有 writer 竞争锁）</span></span><br><span class="line">  readerWait  <span class="type">int32</span>   <span class="comment">// writer等待完成的reader的数量</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> rwmutexMaxReaders = <span class="number">1</span> &lt;&lt; <span class="number">30</span></span><br></pre></td></tr></table></figure>
+<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p>一个 writer goroutine 获得了内部的互斥锁，就会反转 readerCount 字段，把它从原来的正整数 readerCount(&gt;&#x3D;0) 修改为负数（readerCount - rwmutexMaxReaders），让这个字段保持两个含义（既保存了 reader 的数量，又表示当前有 writer）。也就是说当readerCount为负数的时候表示当前writer goroutine持有写锁中，reader goroutine会进行阻塞。</p>
+<p>当一个 writer 释放锁的时候，它会再次反转 readerCount 字段。可以肯定的是，因为当前锁由 writer 持有，所以，readerCount 字段是反转过的，并且减去了 rwmutexMaxReaders 这个常数，变成了负数。所以，这里的反转方法就是给它增加 rwmutexMaxReaders 这个常数值。</p>
+<h3 id="易错场景"><a href="#易错场景" class="headerlink" title="易错场景"></a>易错场景</h3><ol>
+<li>复制已经使用的读写锁，会把它的状态也给复制过来，原来的锁在释放的时候，并不会修改你复制出来的这个读写锁，这就会导致复制出来的读写锁的状态不对，可能永远无法释放锁</li>
+<li>重入导致死锁，因为读写锁内部基于互斥锁实现对 writer 的并发访问，而互斥锁本身是有重入问题的，所以，writer 重入调用 Lock 的时候，就会出现死锁的现象</li>
+<li>在 reader 的读操作时调用 writer 的写操作（调用 Lock 方法），那么，这个 reader 和 writer 就会形成互相依赖的死锁状态</li>
+<li>当一个 writer 请求锁的时候，如果已经有一些活跃的 reader，它会等待这些活跃的 reader 完成，才有可能获取到锁，但是，如果之后活跃的 reader 再依赖新的 reader 的话，这些新的 reader 就会等待 writer 释放锁之后才能继续执行，这就形成了一个环形依赖： writer 依赖活跃的 reader -&gt; 活跃的 reader 依赖新来的 reader -&gt; 新来的 reader 依赖 writer</li>
+<li>释放未加锁的 RWMutex，和互斥锁一样，Lock 和 Unlock 的调用总是成对出现的，RLock 和 RUnlock 的调用也必须成对出现。Lock 和 RLock 多余的调用会导致锁没有被释放，可能会出现死锁，而 Unlock 和 RUnlock 多余的调用会导致 panic</li>
+</ol>
+<h1 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>两个或两个以上的进程（或线程，goroutine）在执行过程中，因争夺共享资源而处于一种互相等待的状态，如果没有外部干涉，它们都将无法推进下去，此时，我们称系统处于死锁状态或系统产生了死锁。</p>
+<h2 id="产生死锁的四个必要条件"><a href="#产生死锁的四个必要条件" class="headerlink" title="产生死锁的四个必要条件"></a>产生死锁的四个必要条件</h2><ol>
+<li>互斥：资源只能被一个goroutine持有，其他gouroutine必须等待，直到资源被释放</li>
+<li>持有和等待：goroutine 持有一个资源，并且还在请求其它 goroutine 持有的资源</li>
+<li>不可剥夺：资源只能由持有它的 goroutine 来释放</li>
+<li>环路等待：多个等待goroutine（g1,g2,g3），g1等待g2的资源，g2等待g3的资源，g3等待g1的资源，形成环路等待的死结</li>
+</ol>
+<h2 id="如何解决死锁？（只需要打破必要条件其中一个即可避免死锁）"><a href="#如何解决死锁？（只需要打破必要条件其中一个即可避免死锁）" class="headerlink" title="如何解决死锁？（只需要打破必要条件其中一个即可避免死锁）"></a>如何解决死锁？（只需要打破必要条件其中一个即可避免死锁）</h2><ol>
+<li>设置超时时间</li>
+<li>避免使用多个锁</li>
+<li>按照规定顺序申请锁</li>
+<li>死锁检测</li>
+</ol>
+<h1 id="sync-Cond"><a href="#sync-Cond" class="headerlink" title="sync.Cond"></a>sync.Cond</h1><p>Cond 通常应用于等待某个条件的一组 goroutine，等条件变为 true 的时候，其中一个 goroutine 或者所有的 goroutine 都会被唤醒执行。</p>
+<h2 id="基本方法"><a href="#基本方法" class="headerlink" title="基本方法"></a>基本方法</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NeWCond</span><span class="params">(l Locker)</span></span> *Cond </span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *Cond)</span></span> Broadcast() </span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *Cond)</span></span> Signal() </span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *Cond)</span></span> Wait()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Singal(): 唤醒一个等待此 Cond 的 goroutine</li>
+<li>Broadcast(): 唤醒所有等待此 Cond 的 goroutine</li>
+<li>Wait(): 放入 Cond 的等待队列中并阻塞，直到被 Signal 或者 Broadcast 的方法从等待队列中移除并唤醒，使用该方法是需要搭配满足条件</li>
+</ul>
+<p>使用示例：</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    c := sync.NewCond(&amp;sync.Mutex&#123;&#125;)</span><br><span class="line">    <span class="keyword">var</span> ready <span class="type">int</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">        <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(i <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">            time.Sleep(time.Duration(rand.Int63n(<span class="number">10</span>)) * time.Second)</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 加锁更改等待条件</span></span><br><span class="line">            c.L.Lock()</span><br><span class="line">            ready++</span><br><span class="line">            c.L.Unlock()</span><br><span class="line"></span><br><span class="line">            log.Printf(<span class="string">&quot;运动员#%d 已准备就绪\n&quot;</span>, i)</span><br><span class="line">            <span class="comment">// 广播唤醒所有的等待者</span></span><br><span class="line">            c.Broadcast()</span><br><span class="line">        &#125;(i)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    c.L.Lock()</span><br><span class="line">    <span class="keyword">for</span> ready != <span class="number">10</span> &#123;</span><br><span class="line">        c.Wait()</span><br><span class="line">        log.Println(<span class="string">&quot;裁判员被唤醒一次&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    c.L.Unlock()</span><br><span class="line"></span><br><span class="line">    <span class="comment">//所有的运动员是否就绪</span></span><br><span class="line">    log.Println(<span class="string">&quot;所有运动员都准备就绪。比赛开始，3，2，1, ......&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h1><p>channel用于goroutine之间的通信，go语言中，CSP并发模型，不要通过共享内存实现通信，而是通过通信实现共享内存，就是由goroutine和channel实现的。</p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><ul>
+<li>数据交流</li>
+<li>信号通知</li>
+<li>任务编排</li>
+<li>锁</li>
+</ul>
+<h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><p>初始化</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">int</span>, <span class="number">1</span>) <span class="comment">//有缓冲区</span></span><br><span class="line">ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">int</span>) <span class="comment">//无缓冲区</span></span><br></pre></td></tr></table></figure>
+<p>发送数据</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ch &lt;- <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>接受数据</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x := &lt;-ch <span class="comment">// 把接收的一条数据赋值给变量x </span></span><br><span class="line">foo(&lt;-ch) <span class="comment">// 把接收的一个的数据作为参数传给函数 </span></span><br><span class="line">&lt;-ch <span class="comment">// 丢弃接收的一条数据</span></span><br></pre></td></tr></table></figure>
+<h2 id="返回容量"><a href="#返回容量" class="headerlink" title="返回容量"></a>返回容量</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c := <span class="built_in">cap</span>(ch)</span><br></pre></td></tr></table></figure>
+<h2 id="返回channel中缓存的还未被取走的元素数量"><a href="#返回channel中缓存的还未被取走的元素数量" class="headerlink" title="返回channel中缓存的还未被取走的元素数量"></a>返回channel中缓存的还未被取走的元素数量</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l := <span class="built_in">len</span>(ch)</span><br></pre></td></tr></table></figure>
+<h2 id="关闭channel"><a href="#关闭channel" class="headerlink" title="关闭channel"></a>关闭channel</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">close</span>(ch)</span><br></pre></td></tr></table></figure>
+<h2 id="遍历channel"><a href="#遍历channel" class="headerlink" title="遍历channel"></a>遍历channel</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一种</span></span><br><span class="line"><span class="keyword">var</span> ch = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">int</span>, <span class="number">10</span>) </span><br><span class="line"><span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123; </span><br><span class="line">  <span class="keyword">select</span> &#123; </span><br><span class="line">  <span class="keyword">case</span> ch &lt;- i: </span><br><span class="line">  <span class="keyword">case</span> v := &lt;-ch: fmt.Println(v) </span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二种</span></span><br><span class="line"><span class="keyword">for</span> v := <span class="keyword">range</span> ch &#123; </span><br><span class="line">  fmt.Println(v) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="底层结构-1"><a href="#底层结构-1" class="headerlink" title="底层结构"></a>底层结构</h2><p>qcount 已经接收但还未被取走的元素个数 内置函数len获取到</p>
+<p>datasiz 循环队列的大小 暂时认为是cap容量的值</p>
+<p>elemtype和elemsize 声明chan时到元素类型和大小 固定</p>
+<p>buf 指向缓冲区的指针 无缓冲通道中 buf的值为nil</p>
+<p>sendx 处理发送进来数据的指针在buf中的位置 接收到数据 指针会加上elemsize，移向下一个位置</p>
+<p>recvx 处理接收请求（发送出去）的指针在buf中的位置</p>
+<p>recvq 如果没有数据可读而阻塞， 会加入到recvq队列中</p>
+<p>sendq 向一个满了的buf 发送数据而阻塞，会加入到sendq队列中</p>
+<h2 id="实现原理-1"><a href="#实现原理-1" class="headerlink" title="实现原理"></a>实现原理</h2><p>向channel写数据的流程：</p>
+<p>有缓冲区：<br>优先查看recvq是否为空，如果不为空，优先唤醒recvq的中goroutine，并写入数据；如果队列为空，则写入缓冲区，如果缓冲区已满则写入sendq队列；</p>
+<p>无缓冲区：<br>直接写入sendq队列</p>
+<p>向channel读数据的流程：</p>
+<p>有缓冲区：优先查看缓冲区，如果缓冲区有数据并且未满，直接从缓冲区取出数据；<br>如果缓冲区已满并且sendq队列不为空，优先读取缓冲区头部的数据，并将队列的G的数据写入缓冲区尾部；</p>
+<p>无缓冲区：将当前goroutine加入recvq队列，等到写goroutine的唤醒</p>
+<h2 id="易错点"><a href="#易错点" class="headerlink" title="易错点"></a>易错点</h2><ul>
+<li>channel未初始化，写入或者读取都会阻塞</li>
+<li>往close的channel写入数据会发生panic</li>
+<li>close未初始化channel会发生panic</li>
+<li>close已经close过的channel会发生panic</li>
+</ul>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src="https://r2.721503.xyz/blog/1746701219828.png" title="头像" alt="头像"><img class="post-copyright__author_img_front" src="https://r2.721503.xyz/blog/1746701219828.png" title="头像" alt="头像"></a><div class="post-copyright__author_name">Rainbow Bubbles</div><div class="post-copyright__author_desc">I have seen through it, but not to the end.</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="http://example.com/rainbow-bubbles/Technology/golang%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('http://example.com/rainbow-bubbles/Technology/golang%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/')">golang面试常见问题总结</span></a></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Rainbow Bubbles of Blog</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/Golang/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>Golang<span class="tagsPageCount">1</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="https://r2.721503.xyz/blog/1751705404089.jpg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/rainbow-bubbles/Technology/swoole%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"><img class="prev-cover" src="https://img.090227.xyz/file/ae62475a131f3734a201c.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">swoole面试常见问题</div></div></a></div><div class="next-post pull-right"><a href="/rainbow-bubbles/Technology/%E5%B8%B8%E7%94%A8%E9%99%90%E6%B5%81%E6%96%B9%E6%A1%88/"><img class="next-cover" src="https://img.090227.xyz/file/ae62475a131f3734a201c.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">常用限流方案</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info-avatar"><img class="avatar-img" src="https://r2.721503.xyz/blog/1746701219828.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__description">for study and sharing</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%89%B9%E7%82%B9"><span class="toc-text">Go语言特点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%87%E7%89%87%E4%B8%8E%E6%95%B0%E7%BB%84%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">切片与数组的区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%87%E7%89%87%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">切片使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%95%BF%E5%BA%A6%E5%92%8C%E5%AE%B9%E9%87%8F"><span class="toc-text">获取长度和容量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0"><span class="toc-text">添加元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0"><span class="toc-text">删除元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%8D%E5%8E%86"><span class="toc-text">遍历</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%87%E7%89%87%E7%9A%84%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6"><span class="toc-text">切片的扩容机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Go1-18%E7%89%88%E5%89%8D"><span class="toc-text">Go1.18版前</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E7%89%87%E6%AE%B5"><span class="toc-text">源码片段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go-1-18%E7%89%88%E6%9C%AC%E5%90%8E"><span class="toc-text">Go 1.18版本后</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E7%89%87%E6%AE%B5-1"><span class="toc-text">源码片段</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%94%81%E6%9C%BA%E5%88%B6"><span class="toc-text">锁机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%92%E6%96%A5%E9%94%81-Mutex"><span class="toc-text">互斥锁 (Mutex)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mutex%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F"><span class="toc-text">Mutex的两种模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E5%86%99%E9%94%81%EF%BC%88RWMutex%EF%BC%89"><span class="toc-text">读写锁（RWMutex）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84"><span class="toc-text">底层结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-text">实现原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%93%E9%94%99%E5%9C%BA%E6%99%AF"><span class="toc-text">易错场景</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%BB%E9%94%81"><span class="toc-text">死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%A7%E7%94%9F%E6%AD%BB%E9%94%81%E7%9A%84%E5%9B%9B%E4%B8%AA%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="toc-text">产生死锁的四个必要条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E6%AD%BB%E9%94%81%EF%BC%9F%EF%BC%88%E5%8F%AA%E9%9C%80%E8%A6%81%E6%89%93%E7%A0%B4%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6%E5%85%B6%E4%B8%AD%E4%B8%80%E4%B8%AA%E5%8D%B3%E5%8F%AF%E9%81%BF%E5%85%8D%E6%AD%BB%E9%94%81%EF%BC%89"><span class="toc-text">如何解决死锁？（只需要打破必要条件其中一个即可避免死锁）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sync-Cond"><span class="toc-text">sync.Cond</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%96%B9%E6%B3%95"><span class="toc-text">基本方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Channel"><span class="toc-text">Channel</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%E5%AE%B9%E9%87%8F"><span class="toc-text">返回容量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%94%E5%9B%9Echannel%E4%B8%AD%E7%BC%93%E5%AD%98%E7%9A%84%E8%BF%98%E6%9C%AA%E8%A2%AB%E5%8F%96%E8%B5%B0%E7%9A%84%E5%85%83%E7%B4%A0%E6%95%B0%E9%87%8F"><span class="toc-text">返回channel中缓存的还未被取走的元素数量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%97%ADchannel"><span class="toc-text">关闭channel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%8D%E5%8E%86channel"><span class="toc-text">遍历channel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84-1"><span class="toc-text">底层结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86-1"><span class="toc-text">实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%93%E9%94%99%E7%82%B9"><span class="toc-text">易错点</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/rainbow-bubbles/News/News-sports/" title="反驳基因决定论——科学训练与个人努力才是制胜关键"><img src="https://r2.721503.xyz/blog/1751705404089.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="反驳基因决定论——科学训练与个人努力才是制胜关键"/></a><div class="content"><a class="title" href="/rainbow-bubbles/News/News-sports/" title="反驳基因决定论——科学训练与个人努力才是制胜关键">反驳基因决定论——科学训练与个人努力才是制胜关键</a><time datetime="2025-07-05T08:36:57.000Z" title="发表于 2025-07-05 16:36:57">2025-07-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/rainbow-bubbles/Technology/yt-dlp/" title="yt-dlp 命令行工具轻松下载各大平台视频"><img src="https://r2.721503.xyz/blog/1750840888570.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="yt-dlp 命令行工具轻松下载各大平台视频"/></a><div class="content"><a class="title" href="/rainbow-bubbles/Technology/yt-dlp/" title="yt-dlp 命令行工具轻松下载各大平台视频">yt-dlp 命令行工具轻松下载各大平台视频</a><time datetime="2025-06-25T08:30:02.000Z" title="发表于 2025-06-25 16:30:02">2025-06-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/rainbow-bubbles/Crypto/crypto-No1/" title="新手小白勇闯币圈第一周"><img src="https://r2.721503.xyz/blog/1750077628977.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="新手小白勇闯币圈第一周"/></a><div class="content"><a class="title" href="/rainbow-bubbles/Crypto/crypto-No1/" title="新手小白勇闯币圈第一周">新手小白勇闯币圈第一周</a><time datetime="2025-06-16T12:29:27.000Z" title="发表于 2025-06-16 20:29:27">2025-06-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/rainbow-bubbles/VibeCoding/vibe-coding-No3/" title="独立开发者 0 成本上线指南（学生党 &amp; 初创团队福音）"><img src="https://r2.721503.xyz/blog/1747929211773.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="独立开发者 0 成本上线指南（学生党 &amp; 初创团队福音）"/></a><div class="content"><a class="title" href="/rainbow-bubbles/VibeCoding/vibe-coding-No3/" title="独立开发者 0 成本上线指南（学生党 &amp; 初创团队福音）">独立开发者 0 成本上线指南（学生党 &amp; 初创团队福音）</a><time datetime="2025-05-31T14:10:25.000Z" title="发表于 2025-05-31 22:10:25">2025-05-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/rainbow-bubbles/VibeCoding/vibe-coding-No2/" title="VSCode编码助手，RooCode使用"><img src="https://r2.721503.xyz/blog/1747929211773.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="VSCode编码助手，RooCode使用"/></a><div class="content"><a class="title" href="/rainbow-bubbles/VibeCoding/vibe-coding-No2/" title="VSCode编码助手，RooCode使用">VSCode编码助手，RooCode使用</a><time datetime="2025-05-31T10:12:58.000Z" title="发表于 2025-05-31 18:12:58">2025-05-31</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2020 - 2025 By <a class="footer-bar-link" href="/" title="Rainbow Bubbles" target="_blank">Rainbow Bubbles</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">8</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.yanjen.dpdns.org/" title="博客"><img class="back-menu-item-icon" src="https://r2.721503.xyz/blog/1747565269548.png" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/?id=60198&amp;server=netease"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 0.88rem;">AI<sup>2</sup></a><a href="/tags/BTC/" style="font-size: 0.88rem;">BTC<sup>1</sup></a><a href="/tags/Cache/" style="font-size: 0.88rem;">Cache<sup>1</sup></a><a href="/tags/ETH/" style="font-size: 0.88rem;">ETH<sup>1</sup></a><a href="/tags/Golang/" style="font-size: 0.88rem;">Golang<sup>1</sup></a><a href="/tags/Hexo/" style="font-size: 0.88rem;">Hexo<sup>1</sup></a><a href="/tags/MySQL/" style="font-size: 0.88rem;">MySQL<sup>1</sup></a><a href="/tags/PHP/" style="font-size: 0.88rem;">PHP<sup>1</sup></a><a href="/tags/Redis/" style="font-size: 0.88rem;">Redis<sup>1</sup></a><a href="/tags/RooCode/" style="font-size: 0.88rem;">RooCode<sup>1</sup></a><a href="/tags/Ubuntu/" style="font-size: 0.88rem;">Ubuntu<sup>1</sup></a><a href="/tags/audio/" style="font-size: 0.88rem;">audio<sup>1</sup></a><a href="/tags/download/" style="font-size: 0.88rem;">download<sup>1</sup></a><a href="/tags/free-tools/" style="font-size: 0.88rem;">free tools<sup>1</sup></a><a href="/tags/php/" style="font-size: 0.88rem;">php<sup>1</sup></a><a href="/tags/prefix/" style="font-size: 0.88rem;">prefix<sup>1</sup></a><a href="/tags/roots/" style="font-size: 0.88rem;">roots<sup>3</sup></a><a href="/tags/suffix/" style="font-size: 0.88rem;">suffix<sup>1</sup></a><a href="/tags/swoole/" style="font-size: 0.88rem;">swoole<sup>1</sup></a><a href="/tags/tools/" style="font-size: 0.88rem;">tools<sup>1</sup></a><a href="/tags/vibe-coding/" style="font-size: 0.88rem;">vibe coding<sup>2</sup></a><a href="/tags/video/" style="font-size: 0.88rem;">video<sup>1</sup></a><a href="/tags/%E5%90%88%E7%BA%A6/" style="font-size: 0.88rem;">合约<sup>1</sup></a><a href="/tags/%E6%B5%81%E9%87%8F%E9%99%90%E6%B5%81/" style="font-size: 0.88rem;">流量限流<sup>1</sup></a><a href="/tags/%E7%83%AD%E7%82%B9/" style="font-size: 0.88rem;">热点<sup>2</sup></a><a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 0.88rem;">缓存<sup>1</sup></a><a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/" style="font-size: 0.88rem;">高并发<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="60198" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="is-center" id="loading-database"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-pulse-icon"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script async src="/anzhiyu/random.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  let initFn = window.walineFn || null
+
+  const initWaline = (Fn) => {
+    const waline = Fn(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://comment.721503.xyz',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+      imageUploader: true,
+    }, null))
+
+    const destroyWaline = () => {
+      waline.destroy()
+    }
+
+    anzhiyu.addGlobalFn('pjax', destroyWaline, 'destroyWaline')
+  }
+
+  const loadWaline = async () => {
+    if (initFn) initWaline(initFn)
+    else {
+      await getCSS('https://cdn.cbd.int/@waline/client@3.1.3/dist/waline.css')
+      if (false) await getCSS('https://cdn.cbd.int/@waline/client@3.1.3/dist/waline-meta.css')
+      const { init } = await import('https://cdn.cbd.int/@waline/client@3.1.3/dist/waline.js')
+      initFn = init || Waline.init
+      initWaline(initFn)
+      window.walineFn = initFn
+    }
+  }
+
+  if ('Waline' === 'Waline' || !true) {
+    if (true) anzhiyu.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>window.addEventListener('load', () => {
+  const changeContent = content => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = async () => {
+    try {
+      const res = await fetch('https://comment.721503.xyz/api/comment?type=recent&count=6', { method: 'GET' })
+      const result = await res.json()
+      const walineArray = result.data.map(e => {
+        return {
+          'content': changeContent(e.comment),
+          'avatar': e.avatar,
+          'nick': e.nick,
+          'url': e.url + '#' + e.objectId,
+          'date': e.time || e.insertedAt
+        }
+      })
+      saveToLocal.set('waline-newest-comments', JSON.stringify(walineArray), 10/(60*24))
+      generateHtml(walineArray)
+    } catch (err) {
+      console.error(err)
+      const $dom = document.querySelector('#card-newest-comments .aside-list')
+      $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+    }
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('waline-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'G-GQR5T6ZRM7', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="https://r2.721503.xyz/blog/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
