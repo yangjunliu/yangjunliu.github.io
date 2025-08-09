@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>WSL2 安装docker</title>
+      <link href="/rainbow-bubbles/WSL/No-2/"/>
+      <url>/rainbow-bubbles/WSL/No-2/</url>
+      
+        <content type="html"><![CDATA[<h1 id="安装前准备"><a href="#安装前准备" class="headerlink" title="安装前准备"></a>安装前准备</h1><p>docker基本都不用介绍是干什么的了，确认自己的wsl和Ubuntu版本信息。使用这个版本来安装docker</p><ol><li>安装wsl2<br><img src="https://r2.721503.xyz/blog/1754717792213.png"></li><li>配置Linux发行版<br><img src="https://r2.721503.xyz/blog/1754717845595.png"></li><li>配置wsl.conf, 开启systemd。配置完重启wsl，使用<code>systemctl status</code>确保已经启动。</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[boot]</span><br><span class="line">systemd=true</span><br></pre></td></tr></table></figure><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>使用官方提供的shell脚本进行安装，<a href="https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script">官方文档</a></p><ol><li>下载脚本并执行</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com -o get-docker.sh</span><br><span class="line">sudo sh ./get-docker.sh --dry-run</span><br></pre></td></tr></table></figure><ol start="2"><li>添加docker用户组，把用户添加到docker组</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看用户信息</span></span><br><span class="line">jean@jean:~/src$ id</span><br><span class="line">uid=1002(jean) gid=1002(jean) groups=1002(jean),4(adm),20(dialout),24(cdrom),25(floppy),27(sudo),29(audio),30(dip),33(www-data),44(video),46(plugdev),100(users),107(netdev),989(docker)</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">添加docker组</span></span><br><span class="line">jean@jean:~/src$ sudo groupadd docker</span><br><span class="line">groupadd: group &#x27;docker&#x27; already exists</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将用户添加到docker组</span></span><br><span class="line">jean@jean:~/src$ sudo usermod -aG docker $USER</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">刷组信息，并查看是否正确添加</span></span><br><span class="line">jean@jean:~/src$ newgrp docker</span><br><span class="line">jean@jean:~/src$ id</span><br><span class="line">uid=1002(jean) gid=989(docker) groups=989(docker),4(adm),20(dialout),24(cdrom),25(floppy),27(sudo),29(audio),30(dip),33(www-data),44(video),46(plugdev),100(users),107(netdev),1002(jean)</span><br></pre></td></tr></table></figure><ol start="3"><li>配置systemctl</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable docker.service</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">开机自动启动</span></span><br><span class="line">sudo systemctl enable containerd.service</span><br></pre></td></tr></table></figure><ol start="4"><li>安装docker-compose</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install docker-compose-plugin</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">执行命令查看是否安装成功</span></span><br><span class="line">docker compose version</span><br></pre></td></tr></table></figure><ol start="5"><li>镜像源问题，一些原因国内很多镜像源关闭。以下是一些私人的镜像源，可以临时用一用。有时间可以自己搭建一个</li></ol><ul><li>docker.1ms.run</li><li>docker.domys.cc</li><li>docker.imgdb.de</li><li>docker-0.unsee.tech</li><li>docker.hlmirror.com</li><li>cjie.eu.org</li><li>docker.m.daocloud.io</li><li>hub.rat.dev</li><li>docker.1panel.live</li><li>docker.rainbond.cc<br>这里加上镜像源的地址就行了，后面是镜像的名字：<br><img src="https://r2.721503.xyz/blog/1754721727195.png"></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> WSL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Ubuntu </tag>
+            
+            <tag> docker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>wsl介绍和基础使用</title>
       <link href="/rainbow-bubbles/WSL/No-1/"/>
       <url>/rainbow-bubbles/WSL/No-1/</url>
